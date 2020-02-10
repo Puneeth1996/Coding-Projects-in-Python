@@ -14,6 +14,10 @@ nouns =     ['apple', 'dinosaur', 'ball',
             'hammer', 'duck', 'panda']
 
 
+color =     ['red', 'blue', 'green',
+            'yellow', 'orange', 'purple',
+            'white','black','gray']
+
 
 print('Welcome to Password Picker!')
 
@@ -24,6 +28,8 @@ while True:
     for num in range(3):
         adjective = random.choice(adjectives)
         noun = random.choice(nouns)
+        # you can introduce this to the password string to make it more complex
+        color = random.choice(color)
 
         number = random.randrange(0, 100)
 
