@@ -87,3 +87,6 @@ rectangle(40, 5, 'black')
 t.hideturtle()
 
 
+strExit =  input('Press any key to exit . . .')
+
+print(strExit)
