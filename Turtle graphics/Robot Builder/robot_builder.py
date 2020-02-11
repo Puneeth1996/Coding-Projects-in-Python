@@ -53,6 +53,17 @@ t.goto(55, 110)
 rectangle(15, 40, 'grey')
 
 
+# hands
+t.goto(-155, 130)
+rectangle(25, 25, 'green')
+t.goto(-147, 130)
+rectangle(10, 15, t.bgcolor())
+t.goto(50, 130)
+rectangle(25, 25, 'green')
+t.goto(58, 130)
+rectangle(10, 15, t.bgcolor())
+
+
 
 # neck
 t.goto(-50, 120)
@@ -70,16 +81,15 @@ rectangle(80, 50, 'red')
 # eyes
 t.goto(-60, 160)
 rectangle(30, 10, 'white')
-t.goto(-55, 155)
+t.goto(-60, 160)
 rectangle(5, 5, 'black')
-t.goto(-40, 155)
+t.goto(-45, 155)
 rectangle(5, 5, 'black')
-
-
 
 
 # mouth
 t.goto(-65, 135)
+t.right(5)
 rectangle(40, 5, 'black')
 
 
