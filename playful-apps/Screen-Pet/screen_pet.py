@@ -20,6 +20,25 @@ def blink():
     root.after(3000, blink)
 
 
+def show_happy(event):
+    if (20 <= event.x <= 350) and (20 <= event.y <= 350):
+        c.itemconfigure(cheek_left, state=NORMAL)
+        c.itemconfigure(cheek_right, state=NORMAL)
+        c.itemconfigure(mouth_happy, state=NORMAL)
+        c.itemconfigure(mouth_normal, state=HIDDEN)
+        c.itemconfigure(mouth_sad, state=HIDDEN)
+    return
+
+
+def hide_happy(event):
+    c.itemconfigure(cheek_left, state=HIDDEN)
+    c.itemconfigure(cheek_right, state=HIDDEN)
+    c.itemconfigure(mouth_happy, state=HIDDEN)
+    c.itemconfigure(mouth_normal, state=NORMAL)
+    c.itemconfigure(mouth_sad, state=HIDDEN)
+    return
+
+
 root = Tk()
 c = Canvas(root, width=400, height=400)
 c.configure(bg='dark blue', highlightthickness=0)
@@ -38,8 +57,16 @@ pupil_left = c.create_oval(140, 145, 150, 155, outline='black', fill='black')
 eye_right = c.create_oval(230, 110, 260, 170, outline='black', fill='white')
 pupil_right = c.create_oval(240, 145, 250, 155, outline='black', fill='black')
 mouth_normal = c.create_line(170, 250, 200, 272, 230, 250, smooth=1, width=2, state=NORMAL)
+mouth_happy = c.create_line(170, 250, 200, 282, 230, 250, smooth=1, width=2, state=HIDDEN)
+mouth_sad = c.create_line(170, 250, 200, 232, 230, 250, smooth=1, width=2, state=HIDDEN)
+cheek_left = c.create_oval(70, 180, 120, 230, outline='pink', fill='pink', state=HIDDEN)
+cheek_right = c.create_oval(280, 180, 330, 230, outline='pink', fill='pink', state=HIDDEN)
 c.pack()
 
 c.pack()
+
+c.bind('<Motion>', show_happy)
+c.bind('<Leave>', hide_happy) 
+
 root.after(1000, blink) 
 root.mainloop()
