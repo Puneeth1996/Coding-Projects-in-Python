@@ -10,6 +10,12 @@ caterpillar.speed(0)
 caterpillar.penup()
 caterpillar.hideturtle()
 
+caterpillar2 = t.Turtle()
+caterpillar2.color('blue')
+caterpillar2.shape('square')
+caterpillar2.penup()
+caterpillar2.speed(0)
+caterpillar2.hideturtle()
 
 
 leaf = t.Turtle()
@@ -35,7 +41,7 @@ score_turtle.speed(0)
 
 
 
-def outside_window():
+def outside_window(caterpillar):
     left_wall = -t.window_width() / 2
     right_wall = t.window_width() / 2
     top_wall = t.window_height() / 2
@@ -50,6 +56,7 @@ def outside_window():
 
 def game_over():
     caterpillar.color('yellow')
+    caterpillar2.color('yellow')
     leaf.color('yellow')
     t.penup()
     t.hideturtle()
@@ -82,20 +89,25 @@ def start_game():
     caterpillar_length = 3
     caterpillar.shapesize(1, caterpillar_length, 1)
     caterpillar.showturtle()
+    caterpillar2.shapesize(1, caterpillar_length, 1)
+    caterpillar2.setheading(180)
+    caterpillar2.showturtle()
     display_score(score)
     place_leaf()
     
         
     while True:
         caterpillar.forward(caterpillar_speed)
-        if caterpillar.distance(leaf) < 20:
+        caterpillar2.forward(caterpillar_speed)
+        if caterpillar.distance(leaf) < 20 or leaf.distance(caterpillar2) < 20:
             place_leaf()
             caterpillar_length = caterpillar_length + 1
             caterpillar.shapesize(1, caterpillar_length, 1)
+            caterpillar2.shapesize(1, caterpillar_length, 1)
             caterpillar_speed = caterpillar_speed + 1
             score = score + 10
             display_score(score)
-        if outside_window():
+        if outside_window(caterpillar) or outside_window(caterpillar2):
             game_over()
             break
 
@@ -117,5 +129,26 @@ t.onkey(move_up, 'Up')
 t.onkey(move_right, 'Right')
 t.onkey(move_down, 'Down')
 t.onkey(move_left, 'Left')
+
+
+
+def caterpillar2_move_up():
+    if caterpillar2.heading() == 0 or caterpillar2.heading() == 180:
+        caterpillar2.setheading(90)
+def caterpillar2_move_down():
+    if caterpillar2.heading() == 0 or caterpillar2.heading() == 180:
+        caterpillar2.setheading(270)
+def caterpillar2_move_left():
+    if caterpillar2.heading() == 90 or caterpillar2.heading() == 270:
+        caterpillar2.setheading(180)
+def caterpillar2_move_right():
+    if caterpillar2.heading() == 90 or caterpillar2.heading() == 270:
+        caterpillar2.setheading(0)
+
+t.onkey(caterpillar2_move_up, 'w')
+t.onkey(caterpillar2_move_right, 'd')
+t.onkey(caterpillar2_move_down, 's')
+t.onkey(caterpillar2_move_left, 'a')
+
 t.listen()
 t.mainloop()
