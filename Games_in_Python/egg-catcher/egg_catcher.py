@@ -7,10 +7,10 @@ canvas_height = 400
 
 root = Tk()
 c = Canvas(root, width=canvas_width, height=canvas_height, background='deep sky blue')
-c.create_rectangle(–5, canvas_height – 100, canvas_width + 5, canvas_height + 5, \
+c.create_rectangle(-5, canvas_height - 100, canvas_width + 5, canvas_height + 5, \
                     fill='sea green', width=0)
 
-c.create_oval(–80, –80, 120, 120, fill='orange', width=0)
+c.create_oval(-80, -80, 120, 120, fill='orange', width=0)
 c.pack()
 
 color_cycle = cycle(['light blue', 'light green', 'light pink', 'light yellow', 'light cyan'])
@@ -24,8 +24,8 @@ difficulty_factor = 0.95
 catcher_color = 'blue'
 catcher_width = 100
 catcher_height = 100
-catcher_start_x = canvas_width / 2 – catcher_width / 2
-catcher_start_y = canvas_height – catcher_height – 20
+catcher_start_x = canvas_width / 2 - catcher_width / 2
+catcher_start_y = canvas_height - catcher_height - 20
 catcher_start_x2 = catcher_start_x + catcher_width
 catcher_start_y2 = catcher_start_y + catcher_height
 
@@ -42,7 +42,7 @@ score_text = c.create_text(10, 10, anchor='nw', font=game_font, fill='darkblue',
 
 lives_remaining = 3
 
-lives_text = c.create_text(canvas_width – 10, 10, anchor='ne', font=game_font, fill='darkblue', \
+lives_text = c.create_text(canvas_width - 10, 10, anchor='ne', font=game_font, fill='darkblue', \
                             text='Lives: ' + str(lives_remaining))
 
 eggs = []
@@ -72,14 +72,14 @@ def egg_dropped(egg):
 
 def lose_a_life():
     global lives_remaining
-    lives_remaining –= 1
+    lives_remaining -= 1
     c.itemconfigure(lives_text, text='Lives: ' + str(lives_remaining))
 
 def check_catch():
     (catcher_x, catcher_y, catcher_x2, catcher_y2) = c.coords(catcher)
     for egg in eggs:
         (egg_x, egg_y, egg_x2, egg_y2) = c.coords(egg)
-        if catcher_x < egg_x and egg_x2 < catcher_x2 and catcher_y2 – egg_y2 < 40:
+        if catcher_x < egg_x and egg_x2 < catcher_x2 and catcher_y2 - egg_y2 < 40:
             eggs.remove(egg)
             c.delete(egg)
             increase_score(egg_score)
@@ -95,12 +95,12 @@ def increase_score(points):
 def move_left(event):
     (x1, y1, x2, y2) = c.coords(catcher)
     if x1 > 0:
-    c.move(catcher, –20, 0)
+        c.move(catcher, -20, 0)
 
 def move_right(event):
     (x1, y1, x2, y2) = c.coords(catcher)
     if x2 < canvas_width:
-    c.move(catcher, 20, 0)
+        c.move(catcher, 20, 0)
 
 c.bind('<Left>', move_left)
 c.bind('<Right>', move_right)
