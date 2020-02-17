@@ -1,5 +1,5 @@
 from tkinter import messagebox, simpledialog, Tk
-
+from random import choice
 
 
 
@@ -68,13 +68,13 @@ while True:
     task = get_task()
     if task == 'encrypt':
         message = get_message()
-        encryptedPrev = swap_letters(message)
-        encrypted = encrypt(encryptedPrev)
+        # encrypted = swap_letters(message)
+        encrypted = encrypt(message)
         messagebox.showinfo('Ciphertext of the secret message is:', encrypted)
     elif task == 'decrypt':
         message = get_message()
-        decryptedPrev = swap_letters(message)
-        decrypted = decrypt(decryptedPrev)
+        # decrypted = swap_letters(message)
+        decrypted = decrypt(message)
         messagebox.showinfo('Plaintext of the secret message is:', decrypted)
     else:
         break
