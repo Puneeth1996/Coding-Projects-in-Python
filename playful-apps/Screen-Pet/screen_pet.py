@@ -1,4 +1,6 @@
 from tkinter import HIDDEN, NORMAL, Tk, Canvas
+import random
+
 
 
 
@@ -93,9 +95,28 @@ def sad():
 
 
 
+def change_color():
+    pet_colors = ['SkyBlue1', 'tomato', 'yellow', 'purple', 'green', 'orange']
+    c.body_color = random.choice(pet_colors)
+    c.itemconfigure(body, outline=c.body_color, fill=c.body_color)
+    c.itemconfigure(ear_left, outline=c.body_color, fill=c.body_color)
+    c.itemconfigure(ear_right, outline=c.body_color, fill=c.body_color)
+    c.itemconfigure(foot_left, outline=c.body_color, fill=c.body_color)
+    c.itemconfigure(foot_right, outline=c.body_color, fill=c.body_color)
+    root.after(5000, change_color)
+
+
 root = Tk()
 c = Canvas(root, width=400, height=400)
 c.configure(bg='dark blue', highlightthickness=0)
+
+
+
+
+
+
+
+
 
 
 c.configure(bg='dark blue', highlightthickness=0)
@@ -135,4 +156,5 @@ c.tongue_out = False
 
 root.after(1000, blink) 
 root.after(5000, sad)
+root.after(5000, change_color)
 root.mainloop()
