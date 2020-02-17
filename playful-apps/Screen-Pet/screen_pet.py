@@ -19,6 +19,20 @@ def blink():
     root.after(250, toggle_eyes)
     root.after(3000, blink)
 
+def toggle_left_eye():
+    current_color = c.itemcget(eye_left, 'fill')
+    new_color = c.body_color if current_color == 'white' else 'white'
+    current_state = c.itemcget(pupil_left, 'state')
+    new_state = NORMAL if current_state == HIDDEN else HIDDEN
+    c.itemconfigure(pupil_left, state=new_state)
+    c.itemconfigure(eye_left, fill=new_color)
+
+
+def wink(event):
+    toggle_left_eye()
+    root.after(250, toggle_left_eye)
+
+
 def toggle_pupils():
     if not c.eyes_crossed:
         c.move(pupil_left, 10, -5)
@@ -111,7 +125,8 @@ c.pack()
 
 c.bind('<Motion>', show_happy)
 c.bind('<Leave>', hide_happy) 
-c.bind('<Double-1>', cheeky)
+c.bind('<Button-1>', cheeky)
+c.bind('<Double-1>', wink)
 
 
 c.happy_level = 10
